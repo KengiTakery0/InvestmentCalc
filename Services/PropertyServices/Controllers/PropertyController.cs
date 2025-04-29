@@ -2,8 +2,8 @@
 
 namespace InvestmentCalc.Services.PropertyServices.Controllers
 {
-    //[ApiController]
-    //[Route("api/property")]
+    [ApiController]
+    [Route("api/property")]
     public class PropertyController : ControllerBase
     {
 
