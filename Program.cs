@@ -30,7 +30,7 @@ namespace InvestmentCalc
             // Перенаправление на страницу авторизации при запуске
             app.MapGet("/", async context =>
             {
-                context.Response.Redirect("/Autorization"); // Убедитесь, что путь правильный
+                context.Response.Redirect("/HomeUser"); // Убедитесь, что путь правильный
             });
             app.Run();
         }
