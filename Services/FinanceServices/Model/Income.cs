@@ -4,10 +4,10 @@ namespace InvestmentCalc.Services.FinanceServices.Model
 {
     public enum IncomeType
     {
-        Rent,          
-        Sale,           
-        GovernmentGrant, 
-        Other           
+        Rent,           // Аренда
+        Sale,           // Продажа
+        GovernmentGrant, // Субсидия
+        Other           // Другое     
     }
     public class Income
     {
@@ -18,8 +18,8 @@ namespace InvestmentCalc.Services.FinanceServices.Model
         public decimal Amount { get; set; }
         public DateTime Date { get; set; }
         public string? Description { get; set; }
-        public bool IsRecurring { get; set; }
-        public RecurrencePeriod? Recurrence { get; set; }
+        public bool IsRecurring { get; set; } // Постоянный ли
+        public RecurrencePeriod? Recurrence { get; set; } // Периодичность
 
         public required Property Property { get; set; }
     }

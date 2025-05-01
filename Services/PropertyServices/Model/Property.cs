@@ -20,18 +20,18 @@ namespace InvestmentCalc.Services.PropertyServices.Model
         public required string City { get; set; }
         public required string Country { get; set; }
         public string? PostalCode { get; set; }
-        public PropertyType Type { get; set; } 
-        public double TotalArea { get; set; } 
-        public int RoomsCount { get; set; }  
-        public int Floors { get; set; }      
-        public int BuildYear { get; set; } 
+        public PropertyType Type { get; set; } // Жилая/коммерческая
+        public double TotalArea { get; set; } // Общая площадь (м²)
+        public int RoomsCount { get; set; }   // Количество комнат/офисов
+        public int Floors { get; set; }       // Этажность
+        public int BuildYear { get; set; }    // Год постройки
 
         // Финансовая информация
-        public decimal PurchasePrice { get; set; }  
-        public DateTime PurchaseDate { get; set; }   
-        public decimal CurrentValue { get; set; }   
+        public decimal PurchasePrice { get; set; }  // Цена покупки
+        public DateTime PurchaseDate { get; set; }   // Дата покупки
+        public decimal CurrentValue { get; set; }   // Текущая стоимость
 
-        
+
         public required User User { get; set; }
         public Mortgage? Mortgage { get; set; }
         public ICollection<Expense> Expenses { get; set; } = new List<Expense>();

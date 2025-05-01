@@ -7,9 +7,9 @@
 
         public DateTime PaymentDate { get; set; }
         public decimal Amount { get; set; }
-        public decimal Principal { get; set; }  
-        public decimal Interest { get; set; }     
-        public bool IsCompleted { get; set; }
+        public decimal Principal { get; set; }   // Основной долг
+        public decimal Interest { get; set; }     // Проценты
+        public bool IsCompleted { get; set; } // Завершон
 
         public required Mortgage Mortgage { get; set; }
     }
