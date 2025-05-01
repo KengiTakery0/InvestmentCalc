@@ -1,18 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore;
+﻿using InvestmentCalc.Services.PropertyServices.Model;
 
 namespace InvestmentCalc.Services.UserServices.Model
 {
     public class User
     {
-        [Key]
-        public int UserID { get; set; }
+        public int UserId { get; set; }
 
         public required string UserName { get; set; }
         public required string Password { get; set; }
         public required string Email { get; set; }
 
-        // TO DO DataToSave
+        public ICollection<Property> Properties { get; set; } = new List<Property>();
+
     }
 
 }

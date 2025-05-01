@@ -16,8 +16,4 @@
     <PackageReference Include="Ocelot" Version="24.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\FinanceServices\" />
-  </ItemGroup>
-
 </Project>

@@ -1,3 +1,6 @@
+using InvestmentCalc.Services;
+using Microsoft.EntityFrameworkCore;
+
 namespace InvestmentCalc
 {
     public class Program
@@ -9,8 +12,10 @@ namespace InvestmentCalc
             // Add services to the container.
             builder.Services.AddRazorPages();
 
-            var app = builder.Build();
+            builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+            var app = builder.Build();
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
