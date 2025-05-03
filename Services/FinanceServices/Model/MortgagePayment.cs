@@ -2,7 +2,7 @@
 {
     public class MortgagePayment
     {
-        public int PaymentId { get; set; }
+        public int MortgagePaymentId { get; set; }
         public int MortgageId { get; set; }
 
         public DateTime PaymentDate { get; set; }
