@@ -1,0 +1,81 @@
+﻿@page
+@model GetSetCalculatorModel
+
+<form method="post"> <input type="hidden" asp-for="Step" />
+
+@if (Model.Step == 1)
+{
+    <h3>Основные параметры инвестиции</h3>
+    <div>
+        <label>Стоимость объекта:</label>
+            <input asp-for="PurchasePrice" type="number" step="0.01" />
+            <span asp-validation-for="PurchasePrice" class="text-danger"></span>
+    </div>
+    <div>
+        <label>Первоначальный взнос:</label>
+            <input asp-for="________" type="number" step="0.01" />
+            <span asp-validation-for="________" class="text-danger"></span>
+    </div>
+    <div>
+        <label>Процентная ставка (%):</label>
+        <input asp-for="InterestRate" type="number" step="0.01" />
+        <span asp-validation-for="InterestRate" class="text-danger"></span>
+    </div>
+    <div>
+        <label>Срок кредита (лет):</label>
+            <input asp-for="TermYears" type="number" />
+            <span asp-validation-for="TermYears" class="text-danger"></span>
+    </div>
+    <div>
+        <label>Ежемесячный платеж:</label>
+        <input asp-for="MonthlyPayment" type="number" step="0.01" />
+        <span asp-validation-for="MonthlyPayment" class="text-danger"></span>
+    </div>
+}
+@* else if (Model.Step == 2)
+{
+    <h3>Доходная часть</h3>
+    <div>
+        <label>Арендный доход:</label>
+        <input asp-for="RentalIncome" type="number" step="0.01" />
+        <span asp-validation-for="RentalIncome" class="text-danger"></span>
+    </div>
+    <div>
+        <label>Загрузка (occupancy rate) %:</label>
+        <input asp-for="OccupancyRate" type="number" step="0.01" />
+        <span asp-validation-for="OccupancyRate" class="text-danger"></span>
+    </div>
+    <div>
+        <label>Дополнительные доходы:</label>
+        <input asp-for="AdditionalIncome" type="number" step="0.01" />
+        <span asp-validation-for="AdditionalIncome" class="text-danger"></span>
+    </div>
+}
+else if (Model.Step == 3)
+{
+    <h3>Расходы</h3>
+    <div>
+        <label>Налоги на недвижимость:</label>
+        <input asp-for="PropertyTaxes" type="number" step="0.01" />
+        <span asp-validation-for="PropertyTaxes" class="text-danger"></span>
+    </div>
+    <div>
+        <label>Страховка:</label>
+        <input asp-for="Insurance" type="number" step="0.01" />
+        <span asp-validation-for="Insurance" class="text-danger"></span>
+    </div>
+    <div>
+        <label>Управление и обслуживание:</label>
+        <input asp-for="ManagementFees" type="number" step="0.01" />
+        <span asp-validation-for="ManagementFees" class="text-danger"></span>
+    </div>
+} *@
+
+<div>
+    @if (Model.Step > 1)
+    {
+        <button type="submit" asp-page-handler="Back">Назад</button>
+    }
+    <button type="submit" asp-page-handler="Next">@((Model.Step == 3) ? "Завершить" : "Далее")</button>
+</div>
+</form>

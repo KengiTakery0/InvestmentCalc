@@ -19,6 +19,7 @@ namespace InvestmentCalc
                 app.UseHsts();
             }
 
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -30,7 +31,7 @@ namespace InvestmentCalc
             // Перенаправление на страницу авторизации при запуске
             app.MapGet("/", async context =>
             {
-                context.Response.Redirect("/HomeUser"); // Убедитесь, что путь правильный
+                context.Response.Redirect("/GetSetCalculator"); // Убедитесь, что путь правильный
             });
             app.Run();
         }
