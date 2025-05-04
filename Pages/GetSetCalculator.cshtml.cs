@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 
 namespace InvestmentCalc.Pages
 {
@@ -12,7 +14,7 @@ namespace InvestmentCalc.Pages
         [BindProperty]
         public decimal PurchasePrice { get; set; } // Стоимость объекта
         [BindProperty]
-        public decimal ________ { get; set; } // Первоначальный взнос
+        public decimal InitialInvestment { get; set; } // Первоначальный взнос
         [BindProperty]
         public decimal InterestRate { get; set; } // Процентная ставка
         [BindProperty]
@@ -20,21 +22,29 @@ namespace InvestmentCalc.Pages
         [BindProperty]
         public decimal MonthlyPayment { get; set; } // Ежемесячный платеж
 
-        //// Доходная часть
-        //[BindProperty]
-        //public decimal RentalIncome { get; set; } // Арендный доход
-        //[BindProperty]
-        //public decimal OccupancyRate { get; set; } // Загрузка
-        //[BindProperty]
-        //public decimal AdditionalIncome { get; set; } // Дополнительные доходы
+        // Доходы
+        [BindProperty]
+        public string IncomeType { get; set; }
+        [BindProperty]
+        public decimal IncomeAmount { get; set; }
+        public List<SelectListItem> IncomeTypes { get; set; } = new List<SelectListItem>
+        {
+            new SelectListItem() { Value = "RentalIncome", Text = "Арендный доход" },
+            new SelectListItem() { Value = "OccupancyRate", Text = "Загрузка (Occupancy rate)" },
+            new SelectListItem() { Value = "AdditionalIncome", Text = "Дополнительные доходы" }
+        };
 
-        //// Расходы
-        //[BindProperty]
-        //public decimal PropertyTaxes { get; set; } // Налоги на недвижимость
-        //[BindProperty]
-        //public decimal Insurance { get; set; } // Страховка
-        //[BindProperty]
-        //public decimal ManagementFees { get; set; } // Управление и обслуживание
+        // Расходы
+        [BindProperty]
+        public string ExpenseType { get; set; }
+        [BindProperty]
+        public decimal ExpenseAmount { get; set; }
+        public List<SelectListItem> ExpenseTypes { get; set; } = new List<SelectListItem>
+        {
+            new SelectListItem() { Value = "PropertyTaxes", Text = "Налоги на недвижимость" },
+            new SelectListItem() { Value = "Insurance", Text = "Страховка" },
+            new SelectListItem() { Value = "ManagementFees", Text = "Управление и обслуживание" }
+        };
 
         public void OnGet()
         {
@@ -46,34 +56,34 @@ namespace InvestmentCalc.Pages
             if (Step == 1)
             {
                 // Валидация основных параметров
-                if (PurchasePrice <= 0 || ________ < 0 || InterestRate < 0 || TermYears <= 0)
+                if (PurchasePrice <= 0 || InitialInvestment < 0 || InterestRate < 0 || TermYears <= 0)
                 {
                     ModelState.AddModelError("PurchasePrice", "Пожалуйста, введите корректные значения для основных параметров.");
                     return Page();
                 }
-                Step = 2; // Переход ко второму шагу
+                Step = 3; // Переход ко второму шагу
             }
-            //else if (Step == 2)
-            //{
-            //    // Валидация доходной части
-            //    if (RentalIncome < 0 || OccupancyRate < 0 || AdditionalIncome < 0)
-            //    {
-            //        ModelState.AddModelError("RentalIncome", "Пожалуйста, введите корректные значения для доходной части.");
-            //        return Page();
-            //    }
-            //    Step = 3; // Переход к третьему шагу
-            //}
-            //else if (Step == 3)
-            //{
-            //    // Валидация расходов
-            //    if (PropertyTaxes < 0 || Insurance < 0 || ManagementFees < 0)
-            //    {
-            //        ModelState.AddModelError("PropertyTaxes", "Пожалуйста, введите корректные значения для расходов.");
-            //        return Page();
-            //    }
-            //    // Здесь можно сохранить данные или выполнить другие действия
-            //    return RedirectToPage("Success"); // Перенаправление на страницу успеха
-            //}
+            else if (Step == 2)
+            {
+                // Валидация доходной части
+                if (string.IsNullOrEmpty(IncomeType) || IncomeAmount < 0)
+                {
+                    ModelState.AddModelError("IncomeType", "Пожалуйста, выберите тип дохода и введите корректную сумму.");
+                    return Page();
+                }
+                Step = 3; // Переход к третьему шагу
+            }
+            else if (Step == 3)
+            {
+                // Валидация расходов
+                if (string.IsNullOrEmpty(ExpenseType) || ExpenseAmount < 0)
+                {
+                    ModelState.AddModelError("ExpenseType", "Пожалуйста, выберите тип расхода и введите корректную сумму.");
+                    return Page();
+                }
+                // Здесь можно сохранить данные или выполнить другие действия
+                return RedirectToPage("Success"); // Перенаправление на страницу успеха
+            }
 
             return Page(); // Показать страницу с текущим шагом
         }

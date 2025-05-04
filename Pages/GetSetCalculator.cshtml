@@ -1,81 +1,134 @@
 ﻿@page
-@model GetSetCalculatorModel
+@model InvestmentCalc.Pages.GetSetCalculatorModel
 
-<form method="post"> <input type="hidden" asp-for="Step" />
+<form method="post">
+    <input type="hidden" asp-for="Step" />
 
-@if (Model.Step == 1)
-{
-    <h3>Основные параметры инвестиции</h3>
-    <div>
-        <label>Стоимость объекта:</label>
-            <input asp-for="PurchasePrice" type="number" step="0.01" />
-            <span asp-validation-for="PurchasePrice" class="text-danger"></span>
-    </div>
-    <div>
-        <label>Первоначальный взнос:</label>
-            <input asp-for="________" type="number" step="0.01" />
-            <span asp-validation-for="________" class="text-danger"></span>
-    </div>
-    <div>
-        <label>Процентная ставка (%):</label>
-        <input asp-for="InterestRate" type="number" step="0.01" />
-        <span asp-validation-for="InterestRate" class="text-danger"></span>
-    </div>
-    <div>
-        <label>Срок кредита (лет):</label>
-            <input asp-for="TermYears" type="number" />
-            <span asp-validation-for="TermYears" class="text-danger"></span>
-    </div>
-    <div>
-        <label>Ежемесячный платеж:</label>
-        <input asp-for="MonthlyPayment" type="number" step="0.01" />
-        <span asp-validation-for="MonthlyPayment" class="text-danger"></span>
-    </div>
-}
-@* else if (Model.Step == 2)
-{
-    <h3>Доходная часть</h3>
-    <div>
-        <label>Арендный доход:</label>
-        <input asp-for="RentalIncome" type="number" step="0.01" />
-        <span asp-validation-for="RentalIncome" class="text-danger"></span>
-    </div>
-    <div>
-        <label>Загрузка (occupancy rate) %:</label>
-        <input asp-for="OccupancyRate" type="number" step="0.01" />
-        <span asp-validation-for="OccupancyRate" class="text-danger"></span>
-    </div>
-    <div>
-        <label>Дополнительные доходы:</label>
-        <input asp-for="AdditionalIncome" type="number" step="0.01" />
-        <span asp-validation-for="AdditionalIncome" class="text-danger"></span>
-    </div>
-}
-else if (Model.Step == 3)
-{
-    <h3>Расходы</h3>
-    <div>
-        <label>Налоги на недвижимость:</label>
-        <input asp-for="PropertyTaxes" type="number" step="0.01" />
-        <span asp-validation-for="PropertyTaxes" class="text-danger"></span>
-    </div>
-    <div>
-        <label>Страховка:</label>
-        <input asp-for="Insurance" type="number" step="0.01" />
-        <span asp-validation-for="Insurance" class="text-danger"></span>
-    </div>
-    <div>
-        <label>Управление и обслуживание:</label>
-        <input asp-for="ManagementFees" type="number" step="0.01" />
-        <span asp-validation-for="ManagementFees" class="text-danger"></span>
-    </div>
-} *@
-
-<div>
-    @if (Model.Step > 1)
+    @if (Model.Step == 1)
     {
-        <button type="submit" asp-page-handler="Back">Назад</button>
+        <h3>Основные параметры инвестиции</h3>
+
+        <div>
+            <label>Стоимость объекта (цена покупки):</label>
+            <input asp-for="PurchasePrice" />
+            <span asp-validation-for="PurchasePrice" class="text-danger"></span>
+        </div>
+        <div>
+            <label>Первоначальный взнос:</label>
+            <input asp-for="InitialInvestment" />
+            <span asp-validation-for="InitialInvestment" class="text-danger"></span>
+        </div>
+        <div>
+            <label>Процентная ставка (%):</label>
+            <input asp-for="InterestRate" />
+            <span asp-validation-for="InterestRate" class="text-danger"></span>
+        </div>
+        <div>
+            <label>Срок кредита (лет):</label>
+            <input asp-for="TermYears" />
+            <span asp-validation-for="TermYears" class="text-danger"></span>
+        </div>
+        <div>
+            <label>Ежемесячный платеж:</label>
+            <input asp-for="MonthlyPayment" />
+            <span asp-validation-for="MonthlyPayment" class="text-danger"></span>
+        </div>
     }
-    <button type="submit" asp-page-handler="Next">@((Model.Step == 3) ? "Завершить" : "Далее")</button>
-</div>
+    else if (Model.Step == 2)
+    {
+        <h3>Доходная часть</h3>
+
+        <div>
+            <label>Тип дохода:</label>
+            <select asp-for="IncomeType" asp-items="Model.IncomeTypes">
+                <option value="">-- Выберите тип дохода --</option>
+            </select>
+            <span asp-validation-for="IncomeType" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label>Сумма дохода:</label>
+            <input asp-for="IncomeAmount" />
+            <span asp-validation-for="IncomeAmount" class="text-danger"></span>
+        </div>
+    }
+    else if (Model.Step == 3)
+    {
+        <h3>Расходы</h3>
+
+        <div>
+            <label>Тип расхода:</label>
+            <select asp-for="ExpenseType" asp-items="Model.ExpenseTypes">
+                <option value="">-- Выберите тип расхода --</option>
+            </select>
+            <span asp-validation-for="ExpenseType" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label>Сумма расхода:</label>
+            <input asp-for="ExpenseAmount" />
+            <span asp-validation-for="ExpenseAmount" class="text-danger"></span>
+        </div>
+    }
+
+    <div class="form-buttons">
+        @if (Model.Step > 1)
+        {
+            <button type="submit" asp-page-handler="Back">Назад</button>
+        }
+        <button type="submit" asp-page-handler="Next">
+            @(Model.Step == 3 ? "Сохранить" : "Далее")
+        </button>
+    </div>
 </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<style>
+    form div {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 8px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        padding: 10px 20px;
+        margin-right: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+    }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+        }
+
+            button[type="submit"]:hover {
+                background-color: #0056b3;
+            }
+
+        button[asp-page-handler="Back"] {
+            background-color: #6c757d;
+            color: white;
+        }
+
+            button[asp-page-handler="Back"]:hover {
+                background-color: #5a6268;
+            }
+</style>
