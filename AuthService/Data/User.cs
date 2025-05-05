@@ -4,7 +4,8 @@ namespace AuthService.Data
 {
     public class User: IdentityUser
     {
-        public string? EmailConfirmationToken { get; set; }
+        
+        public string? EmailConfirmationToken { get; set; }//Подтверждение Email
         
     }
 }
