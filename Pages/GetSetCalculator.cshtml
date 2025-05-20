@@ -1,13 +1,13 @@
 ﻿@page
 @model InvestmentCalc.Pages.GetSetCalculatorModel
 
+
 <form method="post">
     <input type="hidden" asp-for="Step" />
 
     @if (Model.Step == 1)
     {
         <h3>Основные параметры инвестиции</h3>
-
         <div>
             <label>Стоимость объекта (цена покупки):</label>
             <input asp-for="PurchasePrice" />
@@ -29,7 +29,7 @@
             <span asp-validation-for="TermYears" class="text-danger"></span>
         </div>
         <div>
-            <label>Ежемесячный платеж:</label>
+            <label>Ежемесячный платёж:</label>
             <input asp-for="MonthlyPayment" />
             <span asp-validation-for="MonthlyPayment" class="text-danger"></span>
         </div>
@@ -37,7 +37,6 @@
     else if (Model.Step == 2)
     {
         <h3>Доходная часть</h3>
-
         <div>
             <label>Тип дохода:</label>
             <select asp-for="IncomeType" asp-items="Model.IncomeTypes">
@@ -45,7 +44,6 @@
             </select>
             <span asp-validation-for="IncomeType" class="text-danger"></span>
         </div>
-
         <div>
             <label>Сумма дохода:</label>
             <input asp-for="IncomeAmount" />
@@ -55,7 +53,6 @@
     else if (Model.Step == 3)
     {
         <h3>Расходы</h3>
-
         <div>
             <label>Тип расхода:</label>
             <select asp-for="ExpenseType" asp-items="Model.ExpenseTypes">
@@ -63,7 +60,6 @@
             </select>
             <span asp-validation-for="ExpenseType" class="text-danger"></span>
         </div>
-
         <div>
             <label>Сумма расхода:</label>
             <input asp-for="ExpenseAmount" />
