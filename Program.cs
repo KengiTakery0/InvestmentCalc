@@ -28,10 +28,10 @@ namespace InvestmentCalc
             app.UseAuthorization();
 
             app.MapRazorPages();
-            // Перенаправление на страницу авторизации при запуске
+            
             app.MapGet("/", async context =>
             {
-                context.Response.Redirect("/GetSetCalculator"); // Убедитесь, что путь правильный
+
             });
             app.Run();
         }
