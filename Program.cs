@@ -19,6 +19,7 @@ namespace InvestmentCalc
                 app.UseHsts();
             }
 
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -30,7 +31,7 @@ namespace InvestmentCalc
             
             app.MapGet("/", async context =>
             {
-                context.Response.Redirect("/Autorization"); 
+
             });
             app.Run();
         }

@@ -1,0 +1,12 @@
+public class GetSetcalculator
+{
+    [BindProperty]
+    public int Step {get; set;} = 1;
+    
+    [BindProperty]
+    public int  {get; set;} = 1;
+
+}
+
+
+

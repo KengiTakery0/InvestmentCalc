@@ -1,0 +1,27 @@
+﻿@page
+@model InvestmentCalc.Pages.Log_InModel
+@{
+    Layout = null; 
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация</title>
+    <link rel=" stylesheet" href="~/css/site(All).css" asp-append-version=" true " />
+
+</head>
+<body style="background-image:url(https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/becc4ea6-f500-4152-93d8-4f981b0a4138.png);">
+    <div class="container">
+        <h1>Авторизация</h1>
+        <form id="login-form" method="post" asp-page-handler="Login">
+            <input type="text" id="username" name="username" placeholder="Имя пользователя" required>
+            <input type="password" id="password" name="password" placeholder="Пароль" required>
+            <button class="button" type="submit">Войти</button>
+        </form>
+        <button class="back-button" onclick="window.history.back()">Назад</button> <!-- Кнопка "Назад" -->
+    </div>
+</body>
+</html>
