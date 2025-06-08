@@ -1,0 +1,44 @@
+﻿<!-- Контейнер для карты -->
+<div id="map" style="width: 800px; height: 600px;"></div>
+
+<!-- Подключение API Яндекс Карт -->
+<script src="https://api-maps.yandex.ru/2.1/?apikey=14a9e8da-2590-4056-bc09-0e63cbfbc655lang=ru_RU"></script>
+
+<script>
+    if (!window.ymaps) {
+        console.error("Yandex Maps API не загружен!");
+    } else {
+        ymaps.ready(init);
+    }
+
+    function init() {
+        // Создание карты
+        const map = new ymaps.Map("map", {
+            center: [55.751244, 37.618423],
+            zoom: 10,
+            behaviors: ["default", "scrollZoom"]
+        });
+
+        // Элементы управления
+        map.controls.add('zoomControl');
+        map.controls.add('typeSelector');
+
+        // Метка с кастомной иконкой
+        const placemark = new ymaps.Placemark([55.751244, 37.618423], {
+            hintContent: "Кремль",
+            balloonContent: "<b>Москва, Кремль</b>"
+        }, {
+            iconLayout: 'default#image',
+            iconImageHref: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
+            iconImageSize: [30, 30]
+        });
+
+        map.geoObjects.add(placemark);
+
+        // Клик по карте
+        map.events.add('click', function (e) {
+            const coords = e.get('coords');
+            console.log("Координаты:", coords);
+        });
+    }
+</script>

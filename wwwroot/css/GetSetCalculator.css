@@ -6,6 +6,40 @@ public class GetSetcalculator
     [BindProperty]
     public int  {get; set;} = 1;
 
+
+}
+@section Styles {
+    <style >
+    .stepper {
+        display: flex;
+        margin-bottom: 20px;
+    }
+
+    .step {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #ddd;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 10px;
+    }
+
+        .step.active {
+            background: #007bff;
+            color: white;
+        }
+
+    .step-content {
+        margin: 20px 0;
+    }
+
+    .navigation-buttons {
+        margin-top: 20px;
+    }
+
+    </style>
 }
 
 

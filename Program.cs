@@ -36,7 +36,7 @@ namespace InvestmentCalc
             
             app.MapGet("/", async context =>
             {
-                context.Response.Redirect("/GetSetCalculator");
+                context.Response.Redirect("/Ymap");
             });
             app.Run();
         }
